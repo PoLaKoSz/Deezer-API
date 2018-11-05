@@ -10,7 +10,7 @@ namespace PoLaKoSz.Samples.Console
             var deezer = new DeezerClient(logintype);
 
 
-            var albumModel = deezer.Album.Get(302127).ConfigureAwait(false);
+            var albumModel = deezer.Album.Get(302127).Info().ConfigureAwait(false);
 
             var isSuccess = deezer.Album.Rate(302127, 3).ConfigureAwait(false);
         }

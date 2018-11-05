@@ -15,14 +15,15 @@ namespace PoLaKoSz.Deezer.EndPoints
 
 
         /// <summary>
-        /// Get information about a specific <see cref="Album"/>.
+        /// Select which <see cref="Album"/> You want to interact.
+        /// Available methods:
+        ///     Get(<id>).Info()
+        ///     Get(<id>).Comments()
         /// </summary>
         /// <param name="id">ID of the <see cref="Album"/>.</param>
-        public async Task<Album> Get(int id)
+        public AlbumMethods Get(int id)
         {
-            string response = await base.GetAsync(new RequestParameters(id));
-
-            return JsonConvert.DeserializeObject<Album>(response);
+            return new AlbumMethods("album", id);
         }
 
         /// <summary>
@@ -46,7 +47,37 @@ namespace PoLaKoSz.Deezer.EndPoints
 
             return bool.Parse(response);
         }
+    }
+
+    public class AlbumMethods : EndPoint
+    {
+        private readonly int _id;
 
 
+
+        public AlbumMethods(string endPoint, int id)
+            : base(endPoint)
+        {
+            _id = id;
+        }
+
+
+
+        public async Task<Album> Info()
+        {
+            string response = await base.GetAsync(new RequestParameters(_id));
+
+            return JsonConvert.DeserializeObject<Album>(response);
+        }
+
+        public async Task<List<Comment>> Comments()
+        {
+            var parameters = new RequestParameters(_id);
+            parameters.AddSegment("comments");
+
+            string response = await base.GetAsync(parameters);
+
+            return JsonConvert.DeserializeObject<List<Comment>>(response);
+        }
     }
 }

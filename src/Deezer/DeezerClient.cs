@@ -37,7 +37,7 @@ namespace PoLaKoSz.Deezer
                 _clientSideLogin.AppID,
                 _clientSideLogin.RedirectUri);
 
-            string perms = PermissionConverter.Convert(_clientSideLogin.Permissions);
+            string perms = PermissionConverter.Convert(_clientSideLogin.GrantedPermissions);
 
             if (0 < perms.Length)
                 url += perms;

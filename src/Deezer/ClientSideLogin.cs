@@ -8,7 +8,7 @@ namespace PoLaKoSz.Deezer
     {
         public readonly int AppID;
         public readonly Uri RedirectUri;
-        public List<IPermission> GrantedPermissions;
+        public readonly List<IPermission> GrantedPermissions;
         public readonly string AccessToken;
 
 

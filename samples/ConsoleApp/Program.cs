@@ -10,14 +10,7 @@ namespace PoLaKoSz.Samples.Console
     {
         static void Main(string[] args)
         {
-            return;
-
-            var mockUserPermissions = new List<IPermission>()
-            {
-                new BasicPermission()
-            };
-
-            var logintype = new ClientSideLogin("frmOFT1pdkIbo5fOuqM3WEg3WtinUxfI3PA0jopzwDOsdEWmNt", mockUserPermissions);
+            var logintype = new ClientSideLogin("frmOFT1pdkIbo5fOuqM3WEg3WtinUxfI3PA0jopzwDOsdEWmNt");
 
             var deezer = new DeezerClient(logintype);
 

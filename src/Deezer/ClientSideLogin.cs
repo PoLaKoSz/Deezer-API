@@ -13,13 +13,19 @@ namespace PoLaKoSz.Deezer
 
 
 
-        public ClientSideLogin(string accessToken, List<IPermission> permissions)
-            : this(0, new Uri("https://github.com/PoLaKoSz/Deezer-API"), accessToken, permissions) { }
+        /// <summary>
+        /// This constructor only useful when the User already accepted Your APP
+        /// to access his/her data with offline_access permission
+        /// </summary>
+        /// <param name="accessToken">Access token given from the Deezer server at
+        /// the end of the Authorization process</param>
+        public ClientSideLogin(string accessToken)
+            : this(0, new Uri("https://github.com/PoLaKoSz/Deezer-API"), accessToken, new List<IPermission>() { new OfflinePermission()}) { }
 
-        public ClientSideLogin(int appID, Uri redirectUri)
+        private ClientSideLogin(int appID, Uri redirectUri)
             : this(appID, redirectUri, "", new List<IPermission>()) { }
 
-        public ClientSideLogin(int appID, Uri redirectUri, string accessToken, List<IPermission> permissions)
+        private ClientSideLogin(int appID, Uri redirectUri, string accessToken, List<IPermission> grantedPermissions)
         {
             AppID = appID;
             RedirectUri = redirectUri;

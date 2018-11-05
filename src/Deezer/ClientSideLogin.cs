@@ -15,10 +15,10 @@ namespace PoLaKoSz.Deezer
 
         /// <summary>
         /// This constructor only useful when the User already accepted Your APP
-        /// to access his/her data with offline_access permission
+        /// to access his/her data with offline_access permission.
         /// </summary>
         /// <param name="accessToken">Access token given from the Deezer server at
-        /// the end of the Authorization process</param>
+        /// the end of the Authorization process.</param>
         public ClientSideLogin(string accessToken)
             : this(0, new Uri("https://github.com/PoLaKoSz/Deezer-API"), accessToken, new List<IPermission>() { new OfflinePermission()}) { }
 

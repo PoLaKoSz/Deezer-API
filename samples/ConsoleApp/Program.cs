@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using PoLaKoSz.Deezer;
 using PoLaKoSz.Deezer.EndPoints;
-using PoLaKoSz.Deezer.Models.Permissions;
 
 namespace PoLaKoSz.Samples.Console
 {

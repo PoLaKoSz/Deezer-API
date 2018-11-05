@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-using PoLaKoSz.Deezer;
-using PoLaKoSz.Deezer.EndPoints;
+﻿using PoLaKoSz.Deezer;
 
 namespace PoLaKoSz.Samples.Console
 {
@@ -9,17 +7,12 @@ namespace PoLaKoSz.Samples.Console
         static void Main(string[] args)
         {
             var logintype = new ClientSideLogin("frmOFT1pdkIbo5fOuqM3WEg3WtinUxfI3PA0jopzwDOsdEWmNt");
-
             var deezer = new DeezerClient(logintype);
 
-            Get(deezer.Album, 302127).Wait();
-        }
 
-        private async static Task Get(AlbumEndPoint album, int id)
-        {
-            //var albumModel = await album.Get(id);
+            var albumModel = deezer.Album.Get(302127).ConfigureAwait(false);
 
-            var isSuccess = await album.Rate(id, 3);
+            var isSuccess = deezer.Album.Rate(302127, 3).ConfigureAwait(false);
         }
     }
 }

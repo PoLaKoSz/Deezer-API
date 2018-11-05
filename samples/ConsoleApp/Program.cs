@@ -19,7 +19,7 @@ namespace PoLaKoSz.Samples.Console
         {
             //var albumModel = await album.Get(id);
 
-            await album.Rate(id, 3);
+            var isSuccess = await album.Rate(id, 3);
         }
     }
 }

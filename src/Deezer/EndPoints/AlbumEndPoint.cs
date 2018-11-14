@@ -7,10 +7,16 @@ using System.Threading.Tasks;
 
 namespace PoLaKoSz.Deezer.EndPoints
 {
-    public class AlbumEndPoint : SecureEndPoint
+    public class AlbumEndPoint
     {
+        private readonly string _endPointName;
+
+
+
         public AlbumEndPoint()
-            : base("album") { }
+        {
+            _endPointName = "album";
+        }
 
 
 
@@ -19,65 +25,113 @@ namespace PoLaKoSz.Deezer.EndPoints
         /// Available methods:
         ///     Get(<id>).Info()
         ///     Get(<id>).Comments()
+        ///     Get(<id>).Fans()
         /// </summary>
         /// <param name="id">ID of the <see cref="Album"/>.</param>
-        public AlbumMethods Get(int id)
+        public AlbumGetter Get(int id)
         {
-            return new AlbumMethods("album", id);
+            return new AlbumGetter(_endPointName, id);
         }
 
         /// <summary>
-        /// Rate the album.
+        /// Select which <see cref="Album"/> You want to interact.
+        /// Available methods:
+        ///     Set(<id>).Rate()
+        ///     Set(<id>).Comments()
         /// </summary>
         /// <param name="id">ID of the <see cref="Album"/>.</param>
-        /// <param name="rating">Number between 1 and 5 (inclusive).</param>
-        /// <returns><c><TRUE</c> when the operation completed successfully,
-        /// <c>FALSE</c> otherwise.</returns>
-        public async Task<bool> Rate(int id, int rating)
+        public AlbumSetter Set(int id)
         {
-            List<IPermission> reqPermissions = new List<IPermission>()
-            {
-                new BasicPermission()
-            };
-
-            var parameters = new RequestParameters(id);
-            parameters.Add("note", rating);
-
-            string response = await base.PostAsync(parameters, reqPermissions);
-
-            return bool.Parse(response);
+            return new AlbumSetter(_endPointName, id);
         }
     }
 
-    public class AlbumMethods : EndPoint
+    public class AlbumGetter : EndPoint
     {
-        private readonly int _id;
+        private readonly RequestParameters _parameters;
 
 
 
-        public AlbumMethods(string endPoint, int id)
+        public AlbumGetter(string endPoint, int id)
             : base(endPoint)
         {
-            _id = id;
+            _parameters = new RequestParameters(id);
         }
 
 
 
         public async Task<Album> Info()
         {
-            string response = await base.GetAsync(new RequestParameters(_id));
+            string response = await base.GetAsync(_parameters);
 
             return JsonConvert.DeserializeObject<Album>(response);
         }
 
         public async Task<List<Comment>> Comments()
         {
-            var parameters = new RequestParameters(_id);
-            parameters.AddSegment("comments");
+            _parameters.AddSegment("comments");
 
-            string response = await base.GetAsync(parameters);
+            string response = await base.GetAsync(_parameters);
 
             return JsonConvert.DeserializeObject<List<Comment>>(response);
+        }
+
+        public async Task<List<User>> Fans()
+        {
+            _parameters.AddSegment("fans");
+
+            string response = await base.GetAsync(_parameters);
+
+            return JsonConvert.DeserializeObject<List<User>>(response);
+        }
+    }
+
+    public class AlbumSetter : SecureEndPoint
+    {
+        private readonly RequestParameters _parameters;
+        private readonly List<IPermission> _reqPermissions;
+
+
+
+        public AlbumSetter(string endPoint, int id)
+            : base(endPoint)
+        {
+            _parameters = new RequestParameters(id);
+            _reqPermissions = new List<IPermission>()
+            {
+                new BasicPermission()
+            };
+        }
+
+
+
+        /// <summary>
+        /// Rate the <see cref="Album"/>.
+        /// </summary>
+        /// <param name="id">ID of the <see cref="Album"/>.</param>
+        /// <param name="rating">Number between 1 and 5 (inclusive).</param>
+        /// <returns><c><TRUE</c> when the operation completed successfully,
+        /// <c>FALSE</c> otherwise.</returns>
+        public async Task<bool> Rate(int rating)
+        {
+            _parameters.Add("note", rating);
+
+            string response = await base.PostAsync(_parameters, _reqPermissions);
+
+            return bool.Parse(response);
+        }
+
+        /// <summary>
+        /// Comment on an <see cref="Album"/>.
+        /// </summary>
+        /// <param name="comment">The content of the comment.</param>
+        public async Task<bool> Comment(string comment)
+        {
+            _parameters.Add("comment", comment);
+
+            string response = await base.PostAsync(_parameters, _reqPermissions);
+
+            return bool.Parse(response);
         }
     }
 }

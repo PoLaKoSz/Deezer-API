@@ -1,4 +1,5 @@
 ﻿using PoLaKoSz.Deezer;
+using System.Threading.Tasks;
 
 namespace PoLaKoSz.Samples.Console
 {
@@ -9,10 +10,9 @@ namespace PoLaKoSz.Samples.Console
             var logintype = new ClientSideLogin("frmOFT1pdkIbo5fOuqM3WEg3WtinUxfI3PA0jopzwDOsdEWmNt");
             var deezer = new DeezerClient(logintype);
 
+            var albumModel = deezer.Album.Get(302127).Info().GetAwaiter().GetResult();
 
-            var albumModel = deezer.Album.Get(302127).Info().ConfigureAwait(false);
-
-            var isSuccess = deezer.Album.Rate(302127, 3).ConfigureAwait(false);
+            var isSuccess = deezer.Album.Set(302127).Rate(3).GetAwaiter().GetResult();
         }
     }
 }

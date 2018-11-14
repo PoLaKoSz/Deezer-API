@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{84D23D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "samples\ConsoleApp\ConsoleApp.csproj", "{2E19C212-750D-4105-A799-7219034A5D75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unit", "tests\Unit\Unit.csproj", "{1C8B51E8-B811-434E-8763-EF7273E86135}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unit", "tests\Unit\Unit.csproj", "{1C8B51E8-B811-434E-8763-EF7273E86135}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

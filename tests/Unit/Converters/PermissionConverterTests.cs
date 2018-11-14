@@ -1,14 +1,13 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using PoLaKoSz.Deezer.Converters;
 using PoLaKoSz.Deezer.Models.Permissions;
 using System.Collections.Generic;
 
 namespace PoLaKoSz.Deezer.Tests.Unit
 {
-    [TestClass]
     public class PermissionConverterTests
     {
-        [TestMethod]
+        [Test]
         public void Empty_List_Should_Return_Empty_string()
         {
             var input = new List<IPermission>();
@@ -18,7 +17,7 @@ namespace PoLaKoSz.Deezer.Tests.Unit
             Assert.AreEqual("", actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Multiple_Permission_Should_Return_Comma_Seperated_String()
         {
             var input = new List<IPermission>()

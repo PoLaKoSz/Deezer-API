@@ -11,22 +11,28 @@ namespace PoLaKoSz.Deezer
     public class DeezerClient
     {
         private readonly ClientSideLogin _clientSideLogin;
-
-        public AlbumEndPoint Album { get; }
+        private readonly IHttpClient _httpClient;
 
 
 
         public DeezerClient(ClientSideLogin clientSideLogin)
+            : this(clientSideLogin, new HttpClient()) { }
+
+        public DeezerClient(ClientSideLogin clientSideLogin, IHttpClient httpClient)
         {
             _clientSideLogin = clientSideLogin;
-
-            Album = new AlbumEndPoint();
+            _httpClient = httpClient;
 
             // TODO : Write UnitTest, because this line should be here after the EndPoints are initialized
             SecureEndPoint.AccessToken = clientSideLogin.AccessToken;
         }
 
 
+
+        public AlbumEndPoint Album(int id)
+        {
+            return new AlbumEndPoint(id, _httpClient);
+        }
 
         /// <summary>
         /// Start the authentication process.

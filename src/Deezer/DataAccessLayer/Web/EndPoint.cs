@@ -18,7 +18,6 @@ namespace PoLaKoSz.Deezer.DataAccessLayer.Web
 
         static EndPoint()
         {
-            _client = new HttpClient();
             _parameterConverter = new RequestParameterConverter();
         }
 
@@ -33,7 +32,11 @@ namespace PoLaKoSz.Deezer.DataAccessLayer.Web
         public EndPoint(string endPoint, IHttpClient httpClient)
         {
             _baseAddress = new Uri("https://api.deezer.com/" + endPoint);
-            _client = httpClient;
+
+            if (_client == null)
+            {
+                _client = httpClient;
+            }
         }
 
 

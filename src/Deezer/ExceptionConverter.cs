@@ -49,7 +49,7 @@ namespace PoLaKoSz.Deezer
         {
             var errorRoot = JsonConvert.DeserializeObject<ErrorRoot>(stringResponse);
 
-            if (errorRoot.Error != null)
+            if (errorRoot != null && errorRoot.Error != null)
             {
                 BaseException exception;
 

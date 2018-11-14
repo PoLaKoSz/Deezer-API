@@ -25,9 +25,6 @@ namespace PoLaKoSz.Deezer.DataAccessLayer.Web
             _exceptionConverter = new ExceptionConverter();
         }
 
-        public EndPoint(string endPoint)
-            : this(endPoint + "/", _client) { }
-
         /// <summary>
         /// This ctor only for UnitTesting!
         /// </summary>
@@ -35,7 +32,7 @@ namespace PoLaKoSz.Deezer.DataAccessLayer.Web
         /// <param name="httpClient"></param>
         public EndPoint(string endPoint, IHttpClient httpClient)
         {
-            _baseAddress = new Uri("https://api.deezer.com/" + endPoint);
+            _baseAddress = new Uri("https://api.deezer.com/" + endPoint + "/");
 
             if (_client == null)
             {

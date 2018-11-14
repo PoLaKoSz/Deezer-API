@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using PoLaKoSz.Deezer.DataAccessLayer.Web;
 using PoLaKoSz.Deezer.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -20,33 +21,69 @@ namespace PoLaKoSz.Deezer.EndPoints
 
 
 
+        /// <summary>
+        /// Get full details about the <see cref="Album"/>.
+        /// </summary>
+        /// <exception cref="Exception">See the InnerException for more
+        /// information about the exception.</exception>
         public async Task<Album> Info()
         {
-            RequestParameters parameters = new RequestParameters(_id);
+            try
+            {
+                RequestParameters parameters = new RequestParameters(_id);
 
-            string response = await base.GetAsync(parameters);
+                string response = await base.GetAsync(parameters);
 
-            return JsonConvert.DeserializeObject<Album>(response);
+                return JsonConvert.DeserializeObject<Album>(response);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Exception occured while getting info about an Album with ID: {_id}. See the InnerException for more details.", ex);
+            }
         }
 
+        /// <summary>
+        /// Get every posted comment under the <see cref="Album"/>.
+        /// </summary>
+        /// <exception cref="Exception">See the InnerException for more
+        /// information about the exception.</exception>
         public async Task<List<Comment>> Comments()
         {
-            RequestParameters parameters = new RequestParameters(_id);
-            parameters.AddSegment("comments");
+            try
+            {
+                RequestParameters parameters = new RequestParameters(_id);
+                parameters.AddSegment("comments");
 
-            string response = await base.GetAsync(parameters);
+                string response = await base.GetAsync(parameters);
 
-            return JsonConvert.DeserializeObject<List<Comment>>(response);
+                return JsonConvert.DeserializeObject<List<Comment>>(response);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Exception occured while getting comments from Album with ID: {_id}. See the InnerException for more details.", ex);
+            }
         }
 
+        /// <summary>
+        /// Get the list of fans of this <see cref="Album"/>.
+        /// </summary>
+        /// <exception cref="Exception">See the InnerException for more
+        /// information about the exception.</exception>
         public async Task<List<User>> Fans()
         {
-            RequestParameters parameters = new RequestParameters(_id);
-            parameters.AddSegment("fans");
+            try
+            {
+                RequestParameters parameters = new RequestParameters(_id);
+                parameters.AddSegment("fans");
 
-            string response = await base.GetAsync(parameters);
+                string response = await base.GetAsync(parameters);
 
-            return JsonConvert.DeserializeObject<List<User>>(response);
+                return JsonConvert.DeserializeObject<List<User>>(response);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Exception occured while getting fans from Album with ID: {_id}. See the InnerException for more details.", ex);
+            }
         }
     }
 }

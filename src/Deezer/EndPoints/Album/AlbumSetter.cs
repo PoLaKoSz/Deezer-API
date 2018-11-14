@@ -1,6 +1,7 @@
 ﻿using PoLaKoSz.Deezer.DataAccessLayer.Web;
 using PoLaKoSz.Deezer.Models;
 using PoLaKoSz.Deezer.Models.Permissions;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -32,28 +33,46 @@ namespace PoLaKoSz.Deezer.EndPoints
         /// <param name="rating">Number between 1 and 5 (inclusive).</param>
         /// <returns><c><TRUE</c> when the operation completed successfully,
         /// <c>FALSE</c> otherwise.</returns>
+        /// <exception cref="Exception">See the InnerException for more
+        /// information about the exception.</exception>
         public async Task<bool> Rate(int rating)
         {
-            RequestParameters parameters = new RequestParameters(_id);
-            parameters.Add("note", rating);
+            try
+            {
+                RequestParameters parameters = new RequestParameters(_id);
+                parameters.Add("note", rating);
 
-            string response = await base.PostAsync(parameters, _reqPermissions);
+                string response = await base.PostAsync(parameters, _reqPermissions);
 
-            return bool.Parse(response);
+                return bool.Parse(response);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Exception occured while rating Album with ID: {_id}. See the InnerException for more details.", ex);
+            }
         }
 
         /// <summary>
         /// Comment on an <see cref="Album"/>.
         /// </summary>
         /// <param name="comment">The content of the comment.</param>
+        /// <exception cref="Exception">See the InnerException for more
+        /// information about the exception.</exception>
         public async Task<bool> Comment(string comment)
         {
-            RequestParameters parameters = new RequestParameters(_id);
-            parameters.Add("comment", comment);
+            try
+            {
+                RequestParameters parameters = new RequestParameters(_id);
+                parameters.Add("comment", comment);
 
-            string response = await base.PostAsync(parameters, _reqPermissions);
+                string response = await base.PostAsync(parameters, _reqPermissions);
 
-            return bool.Parse(response);
+                return bool.Parse(response);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Exception occured while commenting under Album with ID: {_id}. See the InnerException for more details.", ex);
+            }
         }
     }
 }

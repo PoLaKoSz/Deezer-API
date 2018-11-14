@@ -2,9 +2,8 @@
 
 namespace PoLaKoSz.Deezer.EndPoints
 {
-    public class CommentsEndPoint : SecureEndPoint
+    public class CommentsEndPoint
     {
-        public CommentsEndPoint()
-            : base("comment") { }
+
     }
 }

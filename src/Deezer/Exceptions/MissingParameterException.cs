@@ -2,7 +2,7 @@
 
 namespace PoLaKoSz.Deezer.Exceptions
 {
-    public class MissingPermissionException : BaseException
+    public class MissingParameterException : BaseException
     {
 
     }

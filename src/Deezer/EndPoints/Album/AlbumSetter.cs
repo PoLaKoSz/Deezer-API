@@ -51,28 +51,5 @@ namespace PoLaKoSz.Deezer.EndPoints
                 throw new Exception($"Exception occured while rating Album with ID: {_id}. See the InnerException for more details.", ex);
             }
         }
-
-        /// <summary>
-        /// Comment on an <see cref="Album"/>.
-        /// </summary>
-        /// <param name="comment">The content of the comment.</param>
-        /// <exception cref="Exception">See the InnerException for more
-        /// information about the exception.</exception>
-        public async Task<bool> Comment(string comment)
-        {
-            try
-            {
-                RequestParameters parameters = new RequestParameters(_id);
-                parameters.Add("comment", comment);
-
-                string response = await base.PostAsync(parameters, _reqPermissions);
-
-                return bool.Parse(response);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Exception occured while commenting under Album with ID: {_id}. See the InnerException for more details.", ex);
-            }
-        }
     }
 }

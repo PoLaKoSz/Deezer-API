@@ -15,7 +15,7 @@ namespace PoLaKoSz.Deezer.Tests.Integration.EndPoints
         public AlbumEndPointTests()
             : base("Album")
         { }
-        
+
         [OneTimeSetUp]
         public void SetUp()
         {

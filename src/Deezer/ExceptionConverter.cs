@@ -47,7 +47,13 @@ namespace PoLaKoSz.Deezer
         /// <exception cref="InvalidCastException">An unknown Exception received from the server.</exception>
         public string ThrowExceptionOrContionue(string stringResponse)
         {
-            var errorRoot = JsonConvert.DeserializeObject<ErrorRoot>(stringResponse);
+            ErrorRoot errorRoot = null;
+
+            try
+            {
+                errorRoot = JsonConvert.DeserializeObject<ErrorRoot>(stringResponse);
+            }
+            catch (JsonSerializationException) { }
 
             if (errorRoot != null && errorRoot.Error != null)
             {

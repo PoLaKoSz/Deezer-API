@@ -9,9 +9,9 @@ namespace PoLaKoSz.Deezer.Tests.Integration.EndPoints
 
 
 
-        public BaseEndPoint()
+        public BaseEndPoint(string subFolder)
         {
-            _dirPath = "StaticResources/";
+            _dirPath = Path.Combine("StaticResources", subFolder);
         }
 
 

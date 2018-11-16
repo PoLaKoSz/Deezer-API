@@ -69,7 +69,7 @@ namespace PoLaKoSz.Deezer.EndPoints
         /// </summary>
         /// <exception cref="Exception">See the InnerException for more
         /// information about the exception.</exception>
-        public async Task<List<User>> Fans()
+        public async Task<RootObject<Fan>> Fans()
         {
             try
             {
@@ -78,7 +78,7 @@ namespace PoLaKoSz.Deezer.EndPoints
 
                 string response = await base.GetAsync(parameters);
 
-                return JsonConvert.DeserializeObject<List<User>>(response);
+                return JsonConvert.DeserializeObject<RootObject<Fan>>(response);
             }
             catch (Exception ex)
             {

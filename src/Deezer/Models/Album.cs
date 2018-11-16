@@ -33,19 +33,6 @@ namespace PoLaKoSz.Deezer.Models
         public string role { get; set; }
     }
 
-    public class Artist
-    {
-        public string id { get; set; }
-        public string name { get; set; }
-        public string picture { get; set; }
-        public string picture_small { get; set; }
-        public string picture_medium { get; set; }
-        public string picture_big { get; set; }
-        public string picture_xl { get; set; }
-        public string tracklist { get; set; }
-        public string type { get; set; }
-    }
-
     public class MinimalistArtist
     {
         public string id { get; set; }
@@ -117,7 +104,7 @@ namespace PoLaKoSz.Deezer.Models
         public string tracklist { get; set; }
         public bool explicit_lyrics { get; set; }
         public List<Contributor> contributors { get; set; }
-        public Artist artist { get; set; }
+        public AlbumArtist artist { get; set; }
         public string type { get; set; }
         public Tracks tracks { get; set; }
     }

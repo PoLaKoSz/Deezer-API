@@ -41,22 +41,6 @@ namespace PoLaKoSz.Deezer.Models
         public string type { get; set; }
     }
 
-    public class Track
-    {
-        public string id { get; set; }
-        public bool readable { get; set; }
-        public string title { get; set; }
-        public string title_short { get; set; }
-        public string title_version { get; set; }
-        public string link { get; set; }
-        public string duration { get; set; }
-        public string rank { get; set; }
-        public bool explicit_lyrics { get; set; }
-        public string preview { get; set; }
-        public MinimalistArtist artist { get; set; }
-        public string type { get; set; }
-    }
-
     public class Tracks
     {
         public List<Track> data { get; set; }

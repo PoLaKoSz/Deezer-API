@@ -54,6 +54,7 @@ namespace PoLaKoSz.Deezer.EndPoints
                 RequestParameters parameters = new RequestParameters(_id);
                 parameters.AddSegment("comments");
 
+                //TODO : IDK why, but empty results returned from here, but browser get valid response
                 string response = await base.GetAsync(parameters);
 
                 return JsonConvert.DeserializeObject<List<Comment>>(response);
@@ -83,6 +84,23 @@ namespace PoLaKoSz.Deezer.EndPoints
             catch (Exception ex)
             {
                 throw new Exception($"Exception occured while getting fans from Album with ID: {_id}. See the InnerException for more details.", ex);
+            }
+        }
+
+        public async Task<RootObjectAlbumTracks<AlbumTrack>> Tracks()
+        {
+            try
+            {
+                RequestParameters parameters = new RequestParameters(_id);
+                parameters.AddSegment("tracks");
+
+                string response = await base.GetAsync(parameters);
+
+                return JsonConvert.DeserializeObject<RootObjectAlbumTracks<AlbumTrack>>(response);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Exception occured while getting the tracks from Album with ID: {_id}. See the InnerException for more details.", ex);
             }
         }
     }

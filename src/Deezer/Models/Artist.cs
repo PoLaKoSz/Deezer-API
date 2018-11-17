@@ -3,13 +3,9 @@ using System;
 
 namespace PoLaKoSz.Deezer.Models
 {
-    public class Artist
+    public class Artist : AlbumTrackArtist
     {
-        public int ID { get; }
-        public string Name { get; }
         public Picture Picture { get; }
-        public Uri TrackListURL { get; }
-        public string Type { get; }
 
 
 
@@ -24,12 +20,9 @@ namespace PoLaKoSz.Deezer.Models
             [JsonProperty("picture_xl")] Uri xlUrl,
             [JsonProperty("tracklist")] Uri trackListUrl,
             [JsonProperty("type")] string objectType)
+            : base(id, name, trackListUrl, objectType)
         {
-            ID = id;
-            Name = name;
             Picture = new Picture(defaultUrl, smallUrl, mediumUrl, bigUrl, xlUrl);
-            TrackListURL = trackListUrl;
-            Type = objectType;
         }
     }
 }

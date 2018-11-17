@@ -23,7 +23,7 @@ namespace PoLaKoSz.Deezer.Models
             [JsonProperty("picture_xl")] Uri xlUrl,
             [JsonProperty("tracklist")] Uri trackListUrl,
             [JsonProperty("type")] string objectType,
-            
+
             [JsonProperty("share")] Uri shareURL,
             [JsonProperty("nb_album")] int albumCount,
             [JsonProperty("nb_fan")] int fanCount,

@@ -4,10 +4,8 @@ using System.Collections.Generic;
 
 namespace PoLaKoSz.Deezer.Models
 {
-    public class RootObject<T>
+    public class RootObject<T> : RootObjectAlbumTracks<T>
     {
-        public List<T> Data { get; }
-        public int Total { get; }
         public Uri NextPage { get; }
 
 
@@ -16,9 +14,8 @@ namespace PoLaKoSz.Deezer.Models
             [JsonProperty("data")] List<T> data,
             [JsonProperty("total")] int total,
             [JsonProperty("next")] Uri nextPage)
+            : base(data, total)
         {
-            Data = data;
-            Total = total;
             NextPage = nextPage;
         }
     }

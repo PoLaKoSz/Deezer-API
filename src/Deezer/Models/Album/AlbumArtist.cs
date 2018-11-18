@@ -5,7 +5,6 @@ namespace PoLaKoSz.Deezer.Models
 {
     public class AlbumArtist : Artist
     {
-        // TODO : Elvan baszva a komplett Deezer dokumentáció, ne nézd a leírást, csak a responsokból dolgozz!!
         public Uri ShareURL { get; }
         public int AlbumCount { get; }
         public int FanCount { get; }
@@ -23,7 +22,6 @@ namespace PoLaKoSz.Deezer.Models
             [JsonProperty("picture_xl")] Uri xlUrl,
             [JsonProperty("tracklist")] Uri trackListUrl,
             [JsonProperty("type")] string objectType,
-
             [JsonProperty("share")] Uri shareURL,
             [JsonProperty("nb_album")] int albumCount,
             [JsonProperty("nb_fan")] int fanCount,

@@ -7,10 +7,8 @@ namespace PoLaKoSz.Deezer.Models
     {
         public Uri Link { get; }
 
-        // TODO : Undocumented tracklist and type property
 
-        
-        
+
         public Fan(
             [JsonProperty("id")] int id,
             [JsonProperty("name")] string name,

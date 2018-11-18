@@ -2,16 +2,15 @@
 
 namespace PoLaKoSz.Deezer.Models
 {
-    public class RootObjectAlbumTracks<T>
+    public class RootObjectAlbumTracks<T> : DataClass<T>
     {
-        public List<T> Data { get; }
         public int Total { get; }
 
 
 
         public RootObjectAlbumTracks(List<T> data, int total)
+            : base(data)
         {
-            Data = data;
             Total = total;
         }
     }

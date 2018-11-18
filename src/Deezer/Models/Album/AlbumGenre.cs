@@ -14,9 +14,9 @@ namespace PoLaKoSz.Deezer.Models
 
         public AlbumGenre(
             [JsonProperty("id")] int id,
-            [JsonProperty("id")] string name,
-            [JsonProperty("id")] Uri pictureURL,
-            [JsonProperty("id")] string objectType)
+            [JsonProperty("name")] string name,
+            [JsonProperty("picture")] Uri pictureURL,
+            [JsonProperty("type")] string objectType)
         {
             ID = id;
             Name = name;

@@ -8,9 +8,14 @@ namespace PoLaKoSz.Deezer.Models
 
 
 
-        public RequestParameters(int id)
+        public RequestParameters()
         {
             Slug = "";
+        }
+
+        public RequestParameters(int id)
+            : this()
+        {
             AddID(id);
         }
 

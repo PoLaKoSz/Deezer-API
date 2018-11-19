@@ -39,6 +39,16 @@ namespace PoLaKoSz.Deezer
             return new ArtistEndPoint(id, _httpClient);
         }
 
+        public UserEndPoint User(int id)
+        {
+            return new UserEndPoint(id, _httpClient);
+        }
+
+        public CurrentUserEndPoint CurrentUser()
+        {
+            return new CurrentUserEndPoint(_httpClient);
+        }
+
         /// <summary>
         /// Start the authentication process.
         /// </summary>

@@ -19,7 +19,11 @@ namespace PoLaKoSz.Deezer.DataAccessLayer.Web
         public SecureEndPoint(string endPoint, IHttpClient httpClient)
             : base(endPoint, httpClient)
         {
-            AccessToken = "";
+            if (AccessToken == null)
+            {
+                AccessToken = "";
+            }
+
             UserPermissions = new List<IPermission>();
         }
 
